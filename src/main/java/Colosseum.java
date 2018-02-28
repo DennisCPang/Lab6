@@ -103,8 +103,49 @@ public class Colosseum {
      *         <p>
      */
     public static Pokemon buildPokemon() {
-        Pokemon returnPokemon = null;
-        return returnPokemon;
+        Pokemon tempPokemon = new Pokemon();
+        System.out.println("Please name your Pokemon:");
+        tempPokemon.setName(myScan.next());
+        System.out.println("Select from the following types: 1- Electric, 2 - Fire, 3 - Water");
+        int x = myScan.nextInt();
+        while (x < 1 || x > 3){
+            System.out.println("Sorry pick from the following types: 1- Electric, 2 - Fire, 3 - Water");
+            x = myScan.nextInt();
+            if (x == 1) {
+                tempPokemon.pokeType = Pokemon.PokemonType.ELECTRIC;
+            }
+            else if (x == 2){
+                tempPokemon.pokeType = Pokemon.PokemonType.FIRE;
+            } else {
+                tempPokemon.pokeType = Pokemon.PokemonType.WATER;
+            }
+
+        }
+        System.out.println("How many hit points will it have?(1-50)");
+        tempPokemon.setHitPoints(myScan.nextInt());
+
+        while (tempPokemon.getHitPoints() <= 0 || tempPokemon.getHitPoints() > MAX_HIT_POINTS){
+            System.out.println("Sorry. hit points must be between 1 and 50");
+            tempPokemon.setHitPoints(myScan.nextInt());
+        }
+
+        System.out.println("Enter your attack level(1-49)");
+        tempPokemon.setAttackLevel(myScan.nextInt());
+
+        while (tempPokemon.getAttackLevel() <= 0 || tempPokemon.getAttackLevel() > MAX_HIT_POINTS){
+            System.out.println("Sorry, enter a valid attack level between 1 and 49");
+            tempPokemon.setAttackLevel(myScan.nextInt());
+        }
+
+        System.out.println("Enter your defense level(1-" + (MAX_HIT_POINTS - tempPokemon.getAttackLevel())+ ")");
+        tempPokemon.setDefenseLevel(myScan.nextInt());
+
+        while (tempPokemon.getDefenseLevel() < 1 || tempPokemon.getDefenseLevel() > (MAX_HIT_POINTS - tempPokemon.getAttackLevel())){
+            System.out.println("Sorry, enter a valid defense level between 1 and " + (MAX_HIT_POINTS - tempPokemon.getAttackLevel()));
+            tempPokemon.setDefenseLevel(myScan.nextInt());
+        }
+
+        return tempPokemon;
     }
 
     /**

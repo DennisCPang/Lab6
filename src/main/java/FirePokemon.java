@@ -58,6 +58,14 @@ public class FirePokemon extends Pokemon {
      * Implement this.
      */
     public boolean attack(final Pokemon opponent) {
+        if (opponent.pokeType == PokemonType.WATER || opponent.pokeType == PokemonType.ELECTRIC){
+            if (specialtyProbability > Math.random()){
+                System.out.println("FLAME THROWER!!!");
+                opponent.setHitPoints(0);
+                return true;
+            }
+        }
+        attack(opponent);
         return false;
     }
 
